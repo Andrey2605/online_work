@@ -34,7 +34,8 @@ class Lesson(models.Model):
         blank=True,
         null=True,
         verbose_name="Курс",
-        help_text="Укажите курс",)
+        help_text="Укажите курс",
+    )
 
     video_url = models.URLField(
         blank=True,

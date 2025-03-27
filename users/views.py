@@ -9,7 +9,7 @@ class PaymentsViewSet(ModelViewSet):
     queryset = Payments.objects.all()
     serializer_class = PaymentsSerializer
     filter_backends = [OrderingFilter]
-    filterset_fields = ('payment_method',)
-    ordering_fields = ['payment_date',]
-
-
+    filterset_fields = ("payment_method",)
+    ordering_fields = [
+        "payment_date",
+    ]
