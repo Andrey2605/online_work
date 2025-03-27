@@ -47,7 +47,9 @@ class Payments(models.Model):
         help_text="Укажите плательщика"
     )
     payment_date = models.DateTimeField(
-        verbose_name="Дата оплаты", help_text="Укажите дату оплаты"
+        verbose_name="Дата оплаты", help_text="Укажите дату оплаты",
+        blank=True,
+        null=True,
     )
     course_paid = models.ForeignKey(
         Course,
@@ -55,6 +57,8 @@ class Payments(models.Model):
         related_name="payments_course",
         verbose_name="Оплаченный курс",
         help_text="Укажите оплаченный курс",
+        blank=True,
+        null=True,
 
     )
     lesson_paid = models.ForeignKey(
@@ -63,12 +67,16 @@ class Payments(models.Model):
         related_name="payments_lesson",
         verbose_name="Оплаченный урок",
         help_text="Укажите оплаченный урок",
+        blank=True,
+        null=True,
 
     )
     payment_amount = models.PositiveIntegerField(
         default=0,
         verbose_name="Сумма оплаты",
-        help_text="Укажите сумму оплаты"
+        help_text="Укажите сумму оплаты",
+        blank=True,
+        null=True,
     )
     payment_method = models.CharField(
         choices=PAYMENT_METHOD,
@@ -76,5 +84,7 @@ class Payments(models.Model):
         default="daily",
         verbose_name="Способ оплаты",
         help_text="Выберите способ оплаты",
+        blank=True,
+        null=True,
 
     )
