@@ -27,6 +27,15 @@ class Lesson(models.Model):
         ),
     )
     description = models.TextField(verbose_name="Описание", blank=True, null=True)
+
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name="Курс",
+        help_text="Укажите курс",)
+
     video_url = models.URLField(
         blank=True,
         null=True,
