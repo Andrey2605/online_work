@@ -23,7 +23,7 @@ class CourseDigtalSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ("name", "image", "description", "lesson_count")
+        fields = ("name", "description", "lesson_count")
 
 
 class LessonSerializer(ModelSerializer):

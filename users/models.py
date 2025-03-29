@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from materials.models import Course, Lesson
+
 
 
 class User(AbstractUser):
@@ -34,6 +34,7 @@ class User(AbstractUser):
 
 
 class Payments(models.Model):
+    from materials.models import Course, Lesson
     PAYMENT_METHOD = (
         ("cash", "наличные"),
         ("transfer", "перевод на счет"),
