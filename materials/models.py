@@ -13,8 +13,14 @@ class Course(models.Model):
         ),
     )
     description = models.TextField(verbose_name="Описание", blank=True, null=True)
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Владелец", help_text="Укажите владельца курса")
-
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Владелец",
+        help_text="Укажите владельца курса",
+    )
 
     class Meta:
         verbose_name = "Курс"
@@ -47,7 +53,14 @@ class Lesson(models.Model):
         verbose_name="Ссылка на видео",
         help_text="Введите URL-адрес видео для урока (необязательно).",
     )
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Владелец", help_text="Укажите владельца урока")
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Владелец",
+        help_text="Укажите владельца урока",
+    )
 
     class Meta:
         verbose_name = "Урок"

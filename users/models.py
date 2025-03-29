@@ -2,8 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-
-
 class User(AbstractUser):
     username = None
     email = models.EmailField(
@@ -35,6 +33,7 @@ class User(AbstractUser):
 
 class Payments(models.Model):
     from materials.models import Course, Lesson
+
     PAYMENT_METHOD = (
         ("cash", "наличные"),
         ("transfer", "перевод на счет"),
