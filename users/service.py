@@ -4,8 +4,10 @@ from config.settings import STRIPE_API_KEY
 
 stripe.api_key = STRIPE_API_KEY
 
+def create_stripe_product():
+    return stripe.Product.create(name="Название продукта")
 
-def create_stripe_price(payment_amount):
+def create_stripe_price(payment_amount, product):
     """Создает цену в страйпе"""
 
     return stripe.Price.create(
