@@ -1,13 +1,14 @@
 from rest_framework.filters import OrderingFilter
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework.viewsets import ModelViewSet
+
 
 from users.models import Payments, User
 from users.serializers import PaymentsSerializer, UserSerializer
+from users.service import create_stripe_price, create_stripe_session
 
 
-class PaymentsViewSet(ModelViewSet):
+class PaymentsCreateAPIView(CreateAPIView):
     queryset = Payments.objects.all()
     serializer_class = PaymentsSerializer
     filter_backends = [OrderingFilter]
@@ -16,6 +17,13 @@ class PaymentsViewSet(ModelViewSet):
         "payment_date",
     ]
 
+    def perform_create(self, serializer):
+        payment = serializer.save(user=self.request.user)
+        price = create_stripe_price(payment.payment_amount)
+        session_id, payment_link = create_stripe_session(price)
+        payment.session_id = session_id
+        payment.link = payment_link
+        payment.save()
 
 class UserCreateAPIView(CreateAPIView):
     serializer_class = UserSerializer
