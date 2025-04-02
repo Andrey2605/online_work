@@ -12,6 +12,8 @@ from materials.serializers import (CourseDigtalSerializer, CourseSerializer,
                                    LessonSerializer, SubscriptionSerializer)
 from users.permissions import IsModern, IsOwner
 
+from materials.tasks import mail_update_course_info
+
 
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
@@ -36,6 +38,11 @@ class CourseViewSet(ModelViewSet):
         course = serializer.save()
         course.owner = self.request.user
         course.save()
+
+    def perform_update(self, serializer):
+        updated_course = serializer.save()
+        mail_update_course_info.delay(updated_course)
+        updated_course.save()
 
 
 class LessonListAPIView(ListAPIView):
