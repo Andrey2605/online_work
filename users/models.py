@@ -29,3 +29,79 @@ class User(AbstractUser):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
+
+
+class Payments(models.Model):
+    from materials.models import Course, Lesson
+
+    PAYMENT_METHOD = (
+        ("cash", "наличные"),
+        ("transfer", "перевод на счет"),
+    )
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="payments",
+        verbose_name="Плательщик",
+        help_text="Укажите плательщика",
+    )
+    payment_date = models.DateTimeField(
+        verbose_name="Дата оплаты",
+        help_text="Укажите дату оплаты",
+        blank=True,
+        null=True,
+    )
+    course_paid = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name="payments_course",
+        verbose_name="Оплаченный курс",
+        help_text="Укажите оплаченный курс",
+        blank=True,
+        null=True,
+    )
+    lesson_paid = models.ForeignKey(
+        Lesson,
+        on_delete=models.CASCADE,
+        related_name="payments_lesson",
+        verbose_name="Оплаченный урок",
+        help_text="Укажите оплаченный урок",
+        blank=True,
+        null=True,
+    )
+    payment_amount = models.PositiveIntegerField(
+        default=0,
+        verbose_name="Сумма оплаты",
+        help_text="Укажите сумму оплаты",
+        blank=True,
+        null=True,
+    )
+    payment_method = models.CharField(
+        choices=PAYMENT_METHOD,
+        max_length=255,
+        default="daily",
+        verbose_name="Способ оплаты",
+        help_text="Выберите способ оплаты",
+        blank=True,
+        null=True,
+    )
+    session_id = models.CharField(
+        max_length=255,
+        verbose_name="Id сессии",
+        blank=True,
+        null=True,
+    )
+    link = models.URLField(
+        max_length=400,
+        verbose_name="Cсылка на оплату",
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
+
+    def __str__(self):
+        return self.user
