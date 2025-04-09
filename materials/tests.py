@@ -72,7 +72,7 @@ class LessonTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Lesson.objects.count(), 2)
 
-    def test_create_lesson_YouTube(self):
+    def test_create_lesson_YouTube_(self):
         url = reverse("materials:lesson_create")
         self.client.force_authenticate(user=self.user)
         data = {
