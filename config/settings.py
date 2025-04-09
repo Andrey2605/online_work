@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -81,6 +82,14 @@ DATABASES = {
         "PORT": os.getenv("POSTGRES_PORT", default="5432"),
     }
 }
+
+if "test" in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "test_db.sqlite3"
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
