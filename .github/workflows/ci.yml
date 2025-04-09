@@ -84,7 +84,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/online_work:${{ github.sha }}
-          docker stop lms_api || true
-          docker rm lms_api || true
-          docker run -d --name lms_api --env-file .env -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/online_work:${{ github.sha }}
+          docker stop online_work || true
+          docker rm online_work || true
+          docker run -d --name online_work --env-file .env -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/online_work:${{ github.sha }}
           EOF
