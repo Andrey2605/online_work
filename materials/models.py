@@ -21,7 +21,7 @@ class Course(models.Model):
         verbose_name="Владелец",
         help_text="Укажите владельца курса",
     )
-    price = models.IntegerField(verbose_name='Цена', blank=True, null=True)
+    price = models.IntegerField(verbose_name="Цена", blank=True, null=True)
 
     class Meta:
         verbose_name = "Курс"
@@ -62,7 +62,7 @@ class Lesson(models.Model):
         verbose_name="Владелец",
         help_text="Укажите владельца урока",
     )
-    price = models.IntegerField(verbose_name='Цена', blank=True, null=True)
+    price = models.IntegerField(verbose_name="Цена", blank=True, null=True)
 
     class Meta:
         verbose_name = "Урок"

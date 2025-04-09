@@ -1,6 +1,7 @@
+from datetime import timedelta
+
 from celery import shared_task
 from django.core.mail import send_mail
-from datetime import timedelta
 from django.utils import timezone
 
 from config.settings import EMAIL_HOST_USER
@@ -17,11 +18,12 @@ def mail_update_course_info(course_id):
         print(f"Отправка электронного письма на {subscription.user.email}")
         send_mail(
             subject="Обновление материалов курса",
-            message=f'Курс {subscription.course.title} был обновлен.',
+            message=f"Курс {subscription.course.title} был обновлен.",
             from_email=EMAIL_HOST_USER,
             recipient_list=[subscription.user.email],
-            fail_silently=False
+            fail_silently=False,
         )
+
 
 @shared_task
 def check_last_login():
@@ -32,6 +34,6 @@ def check_last_login():
         if today - user.last_login > timedelta(days=30):
             user.is_active = False
             user.save()
-            print(f'Пользователь {user.email} отключен')
+            print(f"Пользователь {user.email} отключен")
         else:
-            print(f'Пользователь {user.email} активен')
+            print(f"Пользователь {user.email} активен")

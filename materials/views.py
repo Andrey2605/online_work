@@ -10,9 +10,8 @@ from materials.models import Course, Lesson, Subscription
 from materials.paginators import CustomPagination
 from materials.serializers import (CourseDigtalSerializer, CourseSerializer,
                                    LessonSerializer, SubscriptionSerializer)
-from users.permissions import IsModern, IsOwner
-
 from materials.tasks import mail_update_course_info
+from users.permissions import IsModern, IsOwner
 
 
 class CourseViewSet(ModelViewSet):

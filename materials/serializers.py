@@ -12,7 +12,7 @@ class CourseSerializer(ModelSerializer):
         return [lesson.name for lesson in Lesson.objects.filter(course=course)]
 
     def get_is_subscribed(self, obj):
-        user = self.context['request'].user
+        user = self.context["request"].user
         if user.is_authenticated:
             return Subscription.objects.filter(user=user, course=obj).exists()
         return False
