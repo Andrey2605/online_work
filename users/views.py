@@ -2,10 +2,10 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 
-
 from users.models import Payments, User
 from users.serializers import PaymentsSerializer, UserSerializer
-from users.service import create_stripe_product, create_stripe_price, create_stripe_session
+from users.service import (create_stripe_price, create_stripe_product,
+                           create_stripe_session)
 
 
 class PaymentsCreateAPIView(CreateAPIView):
@@ -25,6 +25,7 @@ class PaymentsCreateAPIView(CreateAPIView):
         payment.session_id = session_id
         payment.link = payment_link
         payment.save()
+
 
 class UserCreateAPIView(CreateAPIView):
     serializer_class = UserSerializer

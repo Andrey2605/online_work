@@ -393,6 +393,25 @@ files = [
 Django = ">=4.2"
 
 [[package]]
+name = "django-redis"
+version = "5.4.0"
+description = "Full featured redis cache backend for Django."
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+files = [
+    {file = "django-redis-5.4.0.tar.gz", hash = "sha256:6a02abaa34b0fea8bf9b707d2c363ab6adc7409950b2db93602e6cb292818c42"},
+    {file = "django_redis-5.4.0-py3-none-any.whl", hash = "sha256:ebc88df7da810732e2af9987f7f426c96204bf89319df4c6da6ca9a2942edd5b"},
+]
+
+[package.dependencies]
+Django = ">=3.2"
+redis = ">=3,<4.0.0 || >4.0.0,<4.0.1 || >4.0.1"
+
+[package.extras]
+hiredis = ["redis[hiredis] (>=3,!=4.0.0,!=4.0.1)"]
+
+[[package]]
 name = "django-timezone-field"
 version = "4.2.3"
 description = "A Django app providing database and form fields for pytz timezone objects."
@@ -531,6 +550,23 @@ greenlet = ">=1.0"
 dev = ["black", "build", "commitizen", "isort", "pip-tools", "pre-commit", "twine"]
 
 [[package]]
+name = "flake8"
+version = "7.2.0"
+description = "the modular source code checker: pep8 pyflakes and co"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "flake8-7.2.0-py2.py3-none-any.whl", hash = "sha256:93b92ba5bdb60754a6da14fa3b93a9361fd00a59632ada61fd7b130436c40343"},
+    {file = "flake8-7.2.0.tar.gz", hash = "sha256:fa558ae3f6f7dbf2b4f22663e5343b6b6023620461f8d4ff2019ef4b5ee70426"},
+]
+
+[package.dependencies]
+mccabe = ">=0.7.0,<0.8.0"
+pycodestyle = ">=2.13.0,<2.14.0"
+pyflakes = ">=3.3.0,<3.4.0"
+
+[[package]]
 name = "greenlet"
 version = "3.1.1"
 description = "Lightweight in-process concurrent programming"
@@ -618,6 +654,28 @@ docs = ["Sphinx", "furo"]
 test = ["objgraph", "psutil"]
 
 [[package]]
+name = "gunicorn"
+version = "23.0.0"
+description = "WSGI HTTP Server for UNIX"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "gunicorn-23.0.0-py3-none-any.whl", hash = "sha256:ec400d38950de4dfd418cff8328b2c8faed0edb0d517d3394e457c317908ca4d"},
+    {file = "gunicorn-23.0.0.tar.gz", hash = "sha256:f014447a0101dc57e294f6c18ca6b40227a4c90e9bdb586042628030cba004ec"},
+]
+
+[package.dependencies]
+packaging = "*"
+
+[package.extras]
+eventlet = ["eventlet (>=0.24.1,!=0.36.0)"]
+gevent = ["gevent (>=1.4.0)"]
+setproctitle = ["setproctitle"]
+testing = ["coverage", "eventlet", "gevent", "pytest", "pytest-cov"]
+tornado = ["tornado (>=0.2)"]
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -694,6 +752,18 @@ sqlalchemy = ["sqlalchemy (>=1.4.48,<2.1)"]
 sqs = ["boto3 (>=1.26.143)", "urllib3 (>=1.26.16)"]
 yaml = ["PyYAML (>=3.10)"]
 zookeeper = ["kazoo (>=2.8.0)"]
+
+[[package]]
+name = "mccabe"
+version = "0.7.0"
+description = "McCabe checker, plugin for flake8"
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+files = [
+    {file = "mccabe-0.7.0-py2.py3-none-any.whl", hash = "sha256:6c2d30ab6be0e4a46919781807b4f0d834ebdd6c6e3dca0bda5a15f863427b6e"},
+    {file = "mccabe-0.7.0.tar.gz", hash = "sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325"},
+]
 
 [[package]]
 name = "mypy-extensions"
@@ -931,6 +1001,30 @@ files = [
 ]
 
 [[package]]
+name = "pycodestyle"
+version = "2.13.0"
+description = "Python style guide checker"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "pycodestyle-2.13.0-py2.py3-none-any.whl", hash = "sha256:35863c5974a271c7a726ed228a14a4f6daf49df369d8c50cd9a6f58a5e143ba9"},
+    {file = "pycodestyle-2.13.0.tar.gz", hash = "sha256:c8415bf09abe81d9c7f872502a6eee881fbe85d8763dd5b9924bb0a01d67efae"},
+]
+
+[[package]]
+name = "pyflakes"
+version = "3.3.2"
+description = "passive checker of Python programs"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "pyflakes-3.3.2-py2.py3-none-any.whl", hash = "sha256:5039c8339cbb1944045f4ee5466908906180f13cc99cc9949348d10f82a5c32a"},
+    {file = "pyflakes-3.3.2.tar.gz", hash = "sha256:6dfd61d87b97fba5dcfaaf781171ac16be16453be6d816147989e7f6e6a9576b"},
+]
+
+[[package]]
 name = "pyjwt"
 version = "2.9.0"
 description = "JSON Web Token implementation in Python"
@@ -1071,6 +1165,22 @@ files = [
     {file = "PyYAML-6.0.2-cp39-cp39-win_amd64.whl", hash = "sha256:39693e1f8320ae4f43943590b49779ffb98acb81f788220ea932a6b6c51004d8"},
     {file = "pyyaml-6.0.2.tar.gz", hash = "sha256:d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e"},
 ]
+
+[[package]]
+name = "redis"
+version = "5.2.1"
+description = "Python client for Redis database and key-value store"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "redis-5.2.1-py3-none-any.whl", hash = "sha256:ee7e1056b9aea0f04c6c2ed59452947f34c4940ee025f5dd83e6a6418b6989e4"},
+    {file = "redis-5.2.1.tar.gz", hash = "sha256:16f2e22dff21d5125e8481515e386711a34cbec50f0e44413dd7d9c060a54e0f"},
+]
+
+[package.extras]
+hiredis = ["hiredis (>=3.0.0)"]
+ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"]
 
 [[package]]
 name = "requests"
@@ -1219,4 +1329,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "1d7f40f31dfe3b095c447a924e9b3a34964c15a82d7c216f53691fc44ef1ce5f"
+content-hash = "285786c4c754b0d983eca432eaed5859a533600fd0f9d286d6e1e8272f0d9e16"
