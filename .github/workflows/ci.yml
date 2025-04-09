@@ -43,6 +43,11 @@ jobs:
         poetry config virtualenvs.create false
         poetry install --no-root
 
+    - name: Create .env file
+      run: |
+        echo '"${{ secrets.ENV_FILE }}"' | sed "s/\"//g" > .env
+        echo "TAG=${{ github.sha }}" >> .env
+
     - name: Run tests
       run: python manage.py test
 
